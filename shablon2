@@ -1,0 +1,36 @@
+//Реализовать шаблон функции intersection пересечения двух контейнеров. Контейнеры могут быть разные.
+#include <iostream>
+#include <string>
+
+template<typename T>
+bool includes(T *whole, int whole_size, T *part, int part_size)
+{
+    bool found = true;
+    for(int i = 0; i < part_size; i++) {
+        bool in_array = false;
+        for(int j = 0; j < whole_size; j++) {
+            if (part[i] == whole[j]) {
+                in_array = true;
+                break;
+            }
+        }
+        if (in_array == false) {
+           found = false;
+           break;
+        }
+    }
+    return found;
+}
+
+int main()
+{
+    double list[] = {6, 4, 2, 0, 5, 7, 9, 8, 6};
+    double search[] = {10};
+    double *plist = list;
+    double *psearch = search;
+    if (includes <double> (plist, sizeof(list)/sizeof(psearch),psearch, sizeof(search)/sizeof(plist))) {
+        std::cout << "have intersection " << std::endl;
+    } else {
+        std::cout << "not found intersection" << std::endl;
+    }
+}
